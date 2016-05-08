@@ -1,18 +1,8 @@
-#Lesson 2: Flow control
+#Flow control in Python
 
-From lesson 1, you should have some basic familiarity with Python syntax, be comfortable with assigning variables, and using `print()`. You should also be familiar with using astropy to open FITS files. Now we're going to extend those principles to write a basic data reduction program.
+Previously, all you saw was statements in a single file which were executed only in the order they appear. This will suffice for simple problems, but often you may want to react to some value unknown at the time of writing, or run some similar code many times or with slight variations.
 
-In particular, this lesson is about flow control. Previously, all you saw was statements executed in a single file, in the order they appear. This will suffice for simple problems, but often you may want to react to some input, or run some similar code many times or with slight variations.
-
-##Aside: Photometry data reduction
-In the most general sense, we take 4 types of images: biases, darks, flats, and science images. A bias (or bias frame or bias image) is a zero second exposure that measures the what numbers the detector (in this case a CCD camera) records when no signal is present. A dark frame is an exposure taken with the camera's shutter closed; and thereby records only thermal electrons, which are produced at some approximately constant rate dependent on temperature and the properites of an individual pixel. A flat frame is an image taken of a uniformly illuminated object. The best way to do this is by taking images of the sky at sunrise and sunset, but sometimes it is done by taking images of a screen inside the telescope dome. Flats measure a combination of the pixel sensetivity variations and how well the detector is illuminated.
-
-In general, the procedure is as follows: Combine bias frames and subtract the combined bias frames from everything. Combine dark frames, and subtract from flats and science images (possibly rescaling to match exposure time). Combine and normalize the flat field images, then divide the science images by the normalized flat. In the most optimal case, this simplifies to `reduced = (science - dark)/(flat/median(flat))`
-
-##Aside: Python lists
-Python provides a few simple data structures that I will use often in demonstrations. They are actually quite useful, but incredibly inefficient for processing data compared to numpy ndarrays. The Python list can be constructed using two square brackets and separating values with commas. Anything can go in a list, including other lists. We'll do more with Python's basic data structures later.
-
-#If statements
+##If statements
 ```
 if condition:
     ...
@@ -52,7 +42,7 @@ print('this always runs')
 ```
 The `if` and `elif` conditions are checked in the order they appear. If any of them evaluate to true, the code in the first true statement's block is run, and program executon skips to the end.
 
-#For loops
+##For loops
 ```
 for item in iterable:
     ...
@@ -84,16 +74,15 @@ for name, date in zip(some_names, some_dates):
     print(name, date)
 ```
 
-
-##Aside: Tuples and packing/unpacking
-Along with lists, Python provides another basic data type, the tuple. Tuples are ordered and iterable like lists, but unlike lists cannot be modified once created. Lists can be appended to, tuples cannot. In the example above, I use `zip` to create another iterable of tuples, then unpack the tuples into name and date. Tuple unpacking can let you do clever things like swap the values of two variables:
+###Packing/Unpacking
+In the example above, I use `zip` to create another iterable of tuples, then unpack the tuples into `name` and `date`. Tuple unpacking can also let you do things like swap the values of two variables:
 ```
 x = 1
 y = 2
 x,y = y,x
-print(x)
-print(y)
 ```
+In general this works will all ordered data types, but is mostly used with tuples.
+
 
 If you really insist though that you need the indices of of the iterable you are iterating on, Python offers `enumerate`.
 ```
@@ -101,7 +90,7 @@ for f, filename in os.listdir('.'):
     print(f, filename)
 ```
 
-#While loops
+##While loops
 The while loop combines the loop idea with some boolean (true/false) test.
 
 ```
@@ -121,7 +110,7 @@ while test < 10:
 ```
 This loop will never terminate. That's not inherently a bad thing, since Python provides two other keywords for working with loops: `break` and `continue`.
 
-#Break and Continue
+##Break and Continue
 If you want to write a loop that runs at least once, you can do this with a while loop and `break`.
 ```
 while True:
@@ -147,10 +136,11 @@ There is a much better way to accomplish what I just demonstrated with `continue
 ##Aside: Indentation
 Python _requres_ indentation in a way most languges do not (except for scripting languages). This is known as significant whitespace, and can be a problem in some situations. For example, you can indent with tabs or spaces, but cannot mix them together within a single file. Most text editors can be configured to insert spaces when the tab key is pressed. PyCharm does this by default. Python doesn't specify how much to indent, only that you need to. Indention of 4 space is typical in Python, though some languages prefer 2 or 8. The usual argument is that 2 is not clear enough, and with 8 spaces you can spend a significant fraction of the screen's width on indentation.
 
-###Comprehensions
+
+##Comprehensions
 
 
-#Functions
+##Functions
 Functions are one of the most powerful tools you'll encounter in programming, particularly for data processing. You've actually been using functions already; any name followed directly by parentheses is a function, and a statement where I put something in the parentheses is a function call. To define your own function, do the following:
 ```
 def function_name(argument1, argument2):
@@ -169,10 +159,13 @@ Just as in math, a function is a variables all on its own that can be manipulate
 Take a look at the documentation for `fits.open`: http://docs.astropy.org/en/stable/io/fits/api/files.html#open
 Right there on the second line you see the function and all its arguments laid out. Notice that while we've just been passing one argument, there are a bunch of others here, but all with `name=a_thing` and there's also a `**kwargs`. First to the `=` arguments. Those are keyword arguments, which are optional and therefore require a default value when the function is defined. The defaults are what are shown. The arguments without a `=` are known as positional arguments; position matters. If I were to call `function_name(spam, eggs)` I may not get the same thing back as `function_name(eggs, spam)`. On the other hand, if I were to call `fits.open('test_image.fits', memmap=True, cache=False), that will do the same thing as `fits.open('test_image.fits', cache=False, memmap=True)`. Keyword arguments are super nice because they increase the readability of your code. Remember in the introduction I did something like `np.clip(image, 0, 50)`; it's totally unclear what the `0` and `50` are, and only slightly apparent what `image` is. If you check the documentation for `numpy.clip` you'll see that there is no `=` next to the arguments for the max and min, but that doesn't stop me from using them. I can do `np.clip(image, a_min=0, a_max=50)`. Now isn't that much more clear? If you happen to disagree with the ordering of the arguments, using their names lets you change that around to suit you: `np.clip(image, a_max=50, a_min=0)` will return the same array.
 
-
 ##When and where to use functions
 You should use functions as often as possible. Ideally, a project of any size will be a short bit of procedural code and a bunch of short function definitions. This helps keep your code modular. Good modular code is broken up into many small pieces with good names so you can navigate it quickly and avoid writing the same line or even the same idea in multiple places. That's the whole point of flow control; the programmer should only have to program one idea once, then using flow control tools you can apply it in many circumstances. Good use of functions will speed up your development time. It may seem like extra work to put things into functions instead of copying and pasting code but future you will be very annoyed with past you if current you is lazy.
 By "use functions as often as possible" I really mean it. At any point in the future you may want to use some code you wrote before. If it's packaged up into a function it's almost effortless to use it in a new project.
 
-#Data processing: Combining images
-One of the first applications of a loop is to combine images.
+
+##Summary
+To move on you should be comfortable with:
+* `if` statements, including `elif` and `else`
+* `for` loops, and the use of `enumerate` and `zip`
+* defining basic functions with both positional and keyword arguments

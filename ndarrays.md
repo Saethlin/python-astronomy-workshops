@@ -21,3 +21,11 @@ Arrays can be indexed with arrays of integer or boolean type. To do this, just c
 Indexing arrays with boolean arrays is one of my favorite things in Python. I should briefly mention that all the basic math operations that work with integer and floating point variables in Python will do the same operation on numpy ndarrays, but element-wise. All basic math operations also work between ndarrays and constants. So if I want to get the entries of `array1` where it is greater than `array2`, I can do `array1[array1 > array2]`.
 
 Don't underestimate the power of just indexing an array. Almost all of photometric data processing and a fair part of spectroscopy data processing is just indexing.
+
+
+##Excercise: Photometry data reduction
+In the most general sense, we take 4 types of images: biases, darks, flats, and science images. A bias (or bias frame or bias image) is a zero second exposure that measures the what numbers the detector (in this case a CCD camera) records when no signal is present. A dark frame is an exposure taken with the camera's shutter closed; and thereby records only thermal electrons, which are produced at some approximately constant rate dependent on temperature and the properites of an individual pixel. A flat frame is an image taken of a uniformly illuminated object. The best way to do this is by taking images of the sky at sunrise and sunset, but sometimes it is done by taking images of a screen inside the telescope dome. Flats measure a combination of the pixel sensetivity variations and how well the detector is illuminated.
+
+In general, the procedure is as follows: Combine bias frames and subtract the combined bias frames from everything. Combine dark frames, and subtract from flats and science images (possibly rescaling to match exposure time). Combine and normalize the flat field images, then divide the science images by the normalized flat. In the most optimal case, this simplifies to `reduced = (science - dark)/(flat/median(flat))`
+
+The only other ingredient I haven't told you yet that you need to do all this is how to save fits files. Astropy to the rescue, `fits.writeto(filename, data=data, header=header)`. You don't need to supply a header, but I strongly advise that you take the header from the pre-reduction science image and save the reduced data with it. It's a good habit to get into.
