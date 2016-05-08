@@ -1,4 +1,4 @@
-#Basic data storage in Python
+#Basic data manipulation in Python
 
 ##Basic numerical types
 There are many ways to store data in Python, or any programming language. The most simple is to assign a variable to a single number, `the_number = 87`. There are two general classes of numbers recognized by computers; integers and floating point numbers. An integer is exactly what it sounds like, but they come with some caveats. In Python 2 `3/2` is equal to `1`. This seems a bit nonsensical unless you're familiar with the quotient-remainder theorem. `2` goes into `3` once, with a remainder. In Python 3, all use of the `/` is assumed to be floating point division, so `3/2` will behave normally. If you want to actually do integer division use `//`, and use `%` to find the remainder. The `%` is useful for checking if an integer is a multiple of another.
