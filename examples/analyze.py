@@ -15,6 +15,7 @@ obj = data['obj']
 
 ingress = 2455211.517
 egress = 2455211.569
+
 in_mask = (time > ingress) & (time < egress)
 out_mask = np.invert(in_mask)
 
@@ -32,6 +33,8 @@ coords = coords[good]
 target /= np.median(target)
 for i in range(standards.shape[0]):
     standards[i] /= median(standards[i])
+
+standards /= np.median(standards, axis=1)[:, np.newaxis]
 
 
 #Remove standards one by one by standard deviation until only three left

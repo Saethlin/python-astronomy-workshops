@@ -1,7 +1,7 @@
-'''
+"""
 Compute the three-component effective H-field at each lattice point
 Expects lmbda as an array with same shape as spin
-'''
+"""
 import numpy as np
 from parameters import *
 from magnet import magnet
