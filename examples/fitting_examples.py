@@ -18,14 +18,6 @@ def voigt(x, height, center, gauss_width, lorentz_width):
 
     return height * scipy.special.wofz(z).real/(abs(gauss_width)*np.sqrt(2*np.pi))
 
-#center = np.median(data)
-#spread = np.median(abs(data - np.median(data)))
-
-#mask = abs(data - center) < 3*spread
-#data = data[mask]
-
-array[array == 0] = np.nan
-
 
 true_params = (1e4, 0, 20, 20)
 npts = 1e5
