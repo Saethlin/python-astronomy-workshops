@@ -12,6 +12,11 @@ print(example)
 print(example['spam'])
 print(example['eggs'])
 
+# A dictionary can also be constructed by zipping together an iterable of keys and an iterable of values
+keys = 'spam', 'eggs'
+values = 1, 2
+example = dict(zip(keys, values))
+
 """
 To see what I mean by 'unordered', run this script a bunch of times. You'll notice that sometimes line 13 prints
 {'eggs': 2, 'spam': 1} instead of using the ordering I used when I defined the dictionary
