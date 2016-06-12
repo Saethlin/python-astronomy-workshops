@@ -12,17 +12,16 @@ only sees one line at a time.
 import time
 import numpy as np
 
-arr = np.random.rand(4096, 4096)
+arr = np.random.rand(4096*4096)
 
-# This is what you learn in C/Java
+# Looping over indices as in other languages
 start = time.time()
-arrsum = 0
-for row in range(arr.shape[0]):
-    for col in range(arr.shape[1]):
-        arrsum += arr[row][col]
-print(time.time()-start)
+for i in range(arr.size):
+    e = arr[i]
+print('Looping over indices:', time.time()-start)
 
-# The Python way
+# Basic iteration
 start = time.time()
-arrsum = np.sum(arr)
-print(time.time()-start)
+for i in arr:
+    pass
+print('Proper for each use:', time.time()-start)
