@@ -16,7 +16,7 @@ y = m*x + b
 y = m*x
 y += b
 ```
-That is; there is no reason to cram a long equation onto a single line. Break up long expressions by using itermediate variable, or by using Python's implicit line completion. New lines that occur within grouping symbols `(), [], {}` don't actually end a line. For example:
+That is; there is no reason to cram a long equation onto a single line. Break up long expressions by using intermediate variables, or by using Python's implicit line completion. New lines that occur within grouping symbols `(), [], {}` don't actually end a line. For example:
 ```
 y = (m * x
      +b)
