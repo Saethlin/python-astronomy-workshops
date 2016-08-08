@@ -33,6 +33,43 @@ class TouImage(object):
         fits.writeto(output_path, self.extracted, header=self.header)
 
 
+class Resource(object):
+
+    file_path = '/home/resource_db.csv'
+    db_entries = []
+    with open(file_path) as resource_db:
+        for line in resource_db:
+            db_entries.append(line.split())
+
+    def __init__(self, electrons, name='hydrogen'):
+        self.electrons = electrons
+        self.name = name
+
+        self.abbrev = name[:2]
+        self.needed_electrons = electrons-8
+
+    def __lt__(self, other):
+        return self.electrons < other.electrons
+
+    def react(self, other_resource):
+        if self.electrons + other_resource.electrons == 8:
+            for entry in db_entries:
+        else:
+            print('Reaction failed')
+
+
+lithium = Resource(1, 'lithium')
+chlorine = Resource(7, 'chlorine')
+
+print(Resource.file_path)
+
+print(lithium == chlorine)
+
+print(lithium.name)
+
+lithium.react(chlorine)
+
+
 # Example use case, very stripped-down
 image_list = []
 for path in list_of_paths:
