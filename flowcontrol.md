@@ -136,10 +136,6 @@ There is a much better way to accomplish what I just demonstrated with `continue
 ##Aside: Indentation
 Python _requres_ indentation in a way most languges do not (except for scripting languages). This is known as significant whitespace, and can be a problem in some situations. For example, you can indent with tabs or spaces, but cannot mix them together within a single file. Most text editors can be configured to insert spaces when the tab key is pressed. PyCharm does this by default. Python doesn't specify how much to indent, only that you need to. Indention of 4 space is typical in Python, though some languages prefer 2 or 8. The usual argument is that 2 is not clear enough, and with 8 spaces you can spend a significant fraction of the screen's width on indentation.
 
-
-##Comprehensions
-
-
 ##Functions
 Functions are one of the most powerful tools you'll encounter in programming, particularly for data processing. You've actually been using functions already; any name followed directly by parentheses is a function, and a statement where I put something in the parentheses is a function call. To define your own function, do the following:
 ```
