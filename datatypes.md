@@ -52,10 +52,3 @@ Tuples and lists hopefully make a lot of sense, dictionaries are a bit esoteric,
 
 ###defaultdict
 The defaultdict is part of Python's `collections` module, so use the import statement `from collections import defaultdict` to use it. The value of `defaultdict` is that you can set a default value for those that don't exist yet. I have used defaultdict to keep track of files, for example where each of the keys in the dictionary is a filter or star, and the value of the key is a list of file names. You can then always do `my_defaultdict[target_name].append(new_filename)`, even if you've never assigned `my_defaultdict[target_name]` before.
-
-##Summary
-To move on you should be comfortable with:
- * the difference between integers and floats
- * doing basic math
- * comparing variables with boolean operations
- * tuples and lists and the differences between the two

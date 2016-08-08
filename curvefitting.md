@@ -24,8 +24,3 @@ This technique has its own weaknesses, the most apparent of which is that it use
 ##Examples
 It is possible to fit a polynomial with `scipy.optimize.curve_fit`. Try it for yourself to see the speed difference.
 The only application of global optimization I have so far found is aligning images. Images taken on a telescope with questionable tracking will often need to be aligned to keep track of stars. Think about how this could be done. Keep in mind that a local optimizer here will fail unless the images are very nearly aligned (the star images overlap).
-
-##Summary
-To move on you should be comfortable with
-* Fitting polynomials to data with `np.polyfit`
-* Fitting a generic function to data with `scipy.optimize.curve_fit`

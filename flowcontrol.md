@@ -162,10 +162,3 @@ Right there on the second line you see the function and all its arguments laid o
 ##When and where to use functions
 You should use functions as often as possible. Ideally, a project of any size will be a short bit of procedural code and a bunch of short function definitions. This helps keep your code modular. Good modular code is broken up into many small pieces with good names so you can navigate it quickly and avoid writing the same line or even the same idea in multiple places. That's the whole point of flow control; the programmer should only have to program one idea once, then using flow control tools you can apply it in many circumstances. Good use of functions will speed up your development time. It may seem like extra work to put things into functions instead of copying and pasting code but future you will be very annoyed with past you if current you is lazy.
 By "use functions as often as possible" I really mean it. At any point in the future you may want to use some code you wrote before. If it's packaged up into a function it's almost effortless to use it in a new project.
-
-
-##Summary
-To move on you should be comfortable with:
-* `if` statements, including `elif` and `else`
-* `for` loops, and the use of `enumerate` and `zip`
-* defining basic functions with both positional and keyword arguments
