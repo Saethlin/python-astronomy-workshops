@@ -1,5 +1,5 @@
 #The grand introduction
-When I started to learn Python in 2012 with the aim of doing Astronomy, I didn't find any resources to be imminently helpful. Everything was either too advanced or a computer science style tutorial that went way too slow. It is my hope that after this very fast-paced course you are able to do some Astronomy, with some idea of what's going on under the hood. Don't hesitate to use this as a reference, but do not rely on it. Consult web services like StackOverflow or /r/learnpython when possible as they will have up-to-date answers for your questions.
+When I started to learn Python in 2012 with the aim of doing Astronomy, I didn't find any resources to be imminently helpful. Everything was either too advanced or a computer science style tutorial that went way too slow. It is my hope that after this very fast-paced course you are able to do some Astronomy, with some idea of what's going on under the hood. Don't hesitate to use this as a reference, but do not rely on it. Consult web services like stackoverflow or /r/learnpython when possible as they will have up-to-date answers for your questions.
 
 #So you want to learn Python?
 Before I get into any of the meat here I want to clear up a few misunderstandings or misconceptions:

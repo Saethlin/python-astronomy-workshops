@@ -20,4 +20,15 @@ Now that we have our list of HDUs, we want to grab the first element. Indexing i
 This HDU also has some data, so let's print `hdu.data` too. Astropy will always produce a numpy ndarray for image HDUs, and some sort of astropy table for table HDUs.
 
 #Writing to FITS files
-Since
+Writing to fits files is much harder than reading. At the simplest level, `fits.writeto` has you covered if you just want to save a file with a single HDU and a minimal header, or if you already have the header prepared.
+
+If you want to create your own entries in a header, you need to first construct the header you want then append new cards to it. For example,
+
+```
+primary = fits.PrimaryHDU()
+primary.header.append(fits.Card('MJD-OBS', time))
+hdulist = fits.HDUList([primary])
+hdulist.writeto('some_file_name.fits')
+```
+
+Astropy provides very good instructions and examples on building FITS files in their official documentation.
